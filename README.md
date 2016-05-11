@@ -1,7 +1,7 @@
 # starthdpclusterambari
 This script is for Starting all the service in HDP Hadoop Cluster from Ambari WebUI using Command Line REST Scripts using CURL
 
-Modify the Following variables in sync with Ambari Web UI
+#Modify the Following variables in sync with Ambari Web UI
 
 protocol=http	              --> http or https | Protocol of Ambari Web UI
 
