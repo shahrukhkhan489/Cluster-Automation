@@ -13,4 +13,4 @@ username=adminusername      -->	admin 	 | Username of admin or user who has serv
 
 password=adminpassword      --> admin	 | password of admin or user who has service restart rights		
 
-clustername=cdhclustername	--> Name of Cluster whose services needed to be restart
+clustername=cdhclustername	--> Name of Cluster whose services needed to be Started
