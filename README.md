@@ -3,20 +3,14 @@ This script is for Starting all the service in HDP Hadoop Cluster from Ambari We
 
 Modify the Following variables in sync with Ambari Web UI
 
-#  http or https | Protocol of Ambari Web UI
-protocol=http	
+protocol=http	              --> http or https | Protocol of Ambari Web UI
 
-#  127.0.0.1	 | hostname or IP Address of Ambari System		
-ipaddress=127.0.0.1		
+ipaddress=127.0.0.1		      --> 127.0.0.1	 | hostname or IP Address of Ambari System	
 
-#  8080 or 8443  | Port No. of Ambari Web UI
-port=8080			
+port=8080	                  --> 8080 or 8443  | Port No. of Ambari Web UI		
 
-#  admin 	 | Username of admin or user who has service restart rights
-username=adminusername		
+username=adminusername      -->	admin 	 | Username of admin or user who has service restart rights	
 
-#  admin	 | password of admin or user who has service restart rights
-password=adminpassword		
+password=adminpassword      --> admin	 | password of admin or user who has service restart rights		
 
-#  Name of Cluster whose services needed to be restart
-clustername=hdpclustername	
+clustername=hdpclustername	--> Name of Cluster whose services needed to be restart
