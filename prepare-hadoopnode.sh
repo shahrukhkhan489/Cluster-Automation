@@ -4,7 +4,7 @@ HOSTNAME=yourhostname
 
 
 # modifying hostname in configuration file so that change remains permanent
-sed -i "s///g" /etc/sysconfig/network
+sed -i "s/HOSTNAME=/(.*/)/HOSTNAME=$HOSTNAME/g" /etc/sysconfig/network
 
 # modifying hostname of the system at runtime
 hostname $HOSTNAME
