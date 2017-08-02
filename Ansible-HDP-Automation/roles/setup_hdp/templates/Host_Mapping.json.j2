@@ -1,0 +1,22 @@
+{
+	"blueprint" : "two-node-hdp",
+	"default_password" : "hadoop",
+	"host_groups" :[
+		{
+			  "name" : "host_group_master",
+			  "hosts" : [
+				  {
+				  	"fqdn" : "{{ ambari_server }}"
+				  }
+			  ]
+		},
+		{
+			  "name" : "host_group_slave",
+			  "hosts" : [
+				  {
+				  	"fqdn" : "{{ slave_nodes }}"
+				  }
+			  ]
+		}
+	]
+}

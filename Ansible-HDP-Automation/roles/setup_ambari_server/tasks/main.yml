@@ -1,0 +1,22 @@
+- name: Install Ambari Server
+  yum:
+    name: ambari-server
+    state: installed
+  ignore_errors: true
+  
+- name: Setup Ambari Server
+  shell: |
+    ambari-server setup -s
+
+
+- name: Start Ambari Server
+  service:
+    name: ambari-server
+    state: started
+  ignore_errors: true
+  
+  
+- name: Ensure Ambari Server starts during System Startup
+  service:
+    name: ambari-server
+    enabled: yes
