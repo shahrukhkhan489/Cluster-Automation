@@ -7,10 +7,10 @@
     - variables.yaml
   roles:
       - prerequisites
-      - setup_ambari_slaves
+      - setup_ambari_agent
 
 
-- hosts: master_nodes
+- hosts: ambari_node
   become: true
   vars_files:
     - variables.yaml

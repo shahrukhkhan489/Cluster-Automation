@@ -7,7 +7,7 @@
   lineinfile:
     dest: /etc/ambari-agent/conf/ambari-agent.ini
     regexp: '^hostname=.*'
-    line: 'hostname={{ ambari_server }}'
+    line: 'hostname={{ groups["ambari_node"][0] }}'
     owner: root
     group: root
     mode: 0644

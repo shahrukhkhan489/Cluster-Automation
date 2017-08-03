@@ -5,18 +5,18 @@
 		{
 			  "name" : "host_group_master",
 			  "hosts" : [
-				  {
-				  	"fqdn" : "{{ ambari_server }}"
-				  }
-			  ]
+{% for host in groups['master_nodes'] %}
+     				{
+				  		"fqdn" : "{{ host }}"
+     				},{% endfor %}]
 		},
 		{
 			  "name" : "host_group_slave",
 			  "hosts" : [
-				  {
-				  	"fqdn" : "{{ slave_nodes }}"
-				  }
-			  ]
+{% for host in groups['slave_nodes'] %}
+     				{
+				  		"fqdn" : "{{ host }}"
+     				},{% endfor %}]
 		}
 	]
 }
