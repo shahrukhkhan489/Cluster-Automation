@@ -1,0 +1,22 @@
+{
+	"blueprint" : "two-node-hdp",
+	"default_password" : "hadoop",
+	"host_groups" :[
+		{
+			  "name" : "host_group_master",
+			  "hosts" : [
+{% for host in groups['master_nodes'] %}
+     				{
+				  		"fqdn" : "{{ host }}"
+     				},{% endfor %}]
+		},
+		{
+			  "name" : "host_group_slave",
+			  "hosts" : [
+{% for host in groups['slave_nodes'] %}
+     				{
+				  		"fqdn" : "{{ host }}"
+     				},{% endfor %}]
+		}
+	]
+}

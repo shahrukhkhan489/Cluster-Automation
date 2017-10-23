@@ -1,0 +1,25 @@
+- name: Install Ambari Agent
+  yum:
+    name: ambari-agent
+    state: installed
+    
+- name: Update ambari-agent.ini file to sync with Ambari Server"
+  lineinfile:
+    dest: /etc/ambari-agent/conf/ambari-agent.ini
+    regexp: '^hostname=.*'
+    line: 'hostname={{ groups["ambari_node"][0] }}'
+    owner: root
+    group: root
+    mode: 0644
+    state: present
+    backup: yes
+
+- name: Start Ambari Agent
+  service:
+    name: ambari-agent
+    state: restarted
+  
+- name: Ensure Ambari Agent starts during System Startup
+  service:
+    name: ambari-agent
+    enabled: yes

@@ -1,0 +1,19 @@
+---
+
+
+- hosts: all
+  become: true
+  vars_files:
+    - variables.yaml
+  roles:
+      - prerequisites
+      - setup_ambari_agent
+
+
+- hosts: ambari_node
+  become: true
+  vars_files:
+    - variables.yaml
+  roles:
+      - setup_ambari_server
+      - setup_hdp
