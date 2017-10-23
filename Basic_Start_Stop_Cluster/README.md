@@ -1,2 +1,3 @@
-# cluster_automation
-This deals with Starting and Stopping of Servers and Hadoop Ecosystem related Services
+# Cluster Automation - Basic Start_Stop Cluster
+
+Basic Scripts to Start and Stop of ILO Servers and HDP-CDH Ecosystem of Hadoop Cluster's using Rest API
