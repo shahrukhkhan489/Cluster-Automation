@@ -28,13 +28,22 @@ ambari_hostname_3"
 for host in $ambari_hostnames; do 
 	echo -e "\n$host";
 
+	# Delete User from Ambari to create new on as below
+	# Use this only if old_password is not known. 
+	# Be cautious because it deletes the LDAP User too. Requires to execute `ambari-server sync-ldap --users="username"`  to bring LDAP User back
+	#curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X DELETE "http://$host:8080/api/v1/users/$username" 2> /dev/null
+	#curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X DELETE "https://$host:8443/api/v1/users/$username" 2> /dev/null
+
+
 	# Create New User
-	curl -k --user "$username":"$old_password" -H "X-Requested-By: ambari" -X POST -d '{"Users/user_name":"'$new_user'","Users/password":"'$new_password'","Users/active":"'$is_active'","Users/admin":"'$is_admin'""}' "http://$host:8080/api/v1/users/$username" 2> /dev/null
+	# Will fail if Local/LDAP User exists with same usernmae
+	curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X POST -d '{"Users/user_name":"'$new_user'","Users/password":"'$new_password'","Users/active":"'$is_active'","Users/admin":"'$is_admin'"}' "http://$host:8080/api/v1/users/$username" 2> /dev/null
+	curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X POST -d '{"Users/user_name":"'$new_user'","Users/password":"'$new_password'","Users/active":"'$is_active'","Users/admin":"'$is_admin'"}' "https://$host:8443/api/v1/users/$username" 2> /dev/null
 
 
 	# Change Passowrd
-	curl -k --user "$username":"$old_password" -H "X-Requested-By: ambari" -X PUT -d '{"Users/password":"'$new_password'","Users/old_password":"'$old_password'"}' "http://$host:8080/api/v1/users/$username" 2> /dev/null
-	curl -k --user "$username":"$old_password" -H "X-Requested-By: ambari" -X PUT -d '{"Users/password":"'$new_password'","Users/old_password":"'$old_password'"}' "https://$host:8443/api/v1/users/$username" 2> /dev/null
-
+	# Will fail if Old_Password is Wrong
+	curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X PUT -d '{"Users/password":"'$new_password'","Users/old_password":"'$old_password'"}' "http://$host:8080/api/v1/users/$username" 2> /dev/null
+	curl -k --user "$admin_user":"$admin_pass" -H "X-Requested-By: ambari" -X PUT -d '{"Users/password":"'$new_password'","Users/old_password":"'$old_password'"}' "https://$host:8443/api/v1/users/$username" 2> /dev/null
 done
 
